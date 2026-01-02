@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Table(name = "variants")
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor @Builder
-public class ProductVariant {
+public class ProductVariant extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

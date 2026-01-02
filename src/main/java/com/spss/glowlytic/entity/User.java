@@ -1,4 +1,4 @@
 package com.spss.glowlytic.entity;
 
-public class User {
+public class User extends BaseEntity {
 }

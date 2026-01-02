@@ -28,13 +28,15 @@ public class Product extends BaseEntity {
 
     private String slug;
 
-    @Column(columnDefinition = "TEXT")
+    @Lob
     private String description;
 
-    @Column(name = "full_ingredients", columnDefinition = "TEXT")
+    @Lob
+    @Column(name = "full_ingredients")
     private String fullIngredients;
 
-    @Column(name = "usage_instructions", columnDefinition = "TEXT")
+    @Lob
+    @Column(name = "usage_instructions")
     private String usageInstructions;
 
     @Column(name = "manufacturing_place", length = 100)

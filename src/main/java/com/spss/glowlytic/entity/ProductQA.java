@@ -7,7 +7,7 @@ import lombok.*;
 @Table(name = "product_qa")
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor @Builder
-public class ProductQA {
+public class ProductQA extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
