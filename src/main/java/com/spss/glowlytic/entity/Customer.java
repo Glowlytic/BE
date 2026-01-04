@@ -20,9 +20,6 @@ public class Customer extends BaseEntity {
     @JoinColumn(name = "skin_types_id", nullable = false)
     private SkinType skinType;
 
-    @Column(name = "skin_types_id")
-    private Long skinTypesId;
-
     @Column(name = "loyalty_points")
     private Integer loyaltyPoints;
 

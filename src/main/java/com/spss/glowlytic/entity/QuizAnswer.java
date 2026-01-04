@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class QuizAnswer extends BaseEntity {
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "quiz_question_id")
     private QuizQuestion quizQuestion;
@@ -27,5 +28,5 @@ public class QuizAnswer extends BaseEntity {
     private String aiTag;
 
     @OneToMany(mappedBy = "quizAnswer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<QuizAnswer> quizAnswers;
+    private List<QuizResponse> quizResponses;
 }

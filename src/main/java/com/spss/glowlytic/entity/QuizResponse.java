@@ -20,6 +20,10 @@ public class QuizResponse extends BaseEntity {
     private QuizAnswer quizAnswer;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "quiz_session_id")
+    private QuizSession quizSession;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "quiz_set_id")
     private QuizSet quizSet;
 }
