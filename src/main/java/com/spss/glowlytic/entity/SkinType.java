@@ -28,5 +28,9 @@ public class SkinType extends BaseEntity {
     @OneToMany(mappedBy = "skinType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Customer> customers;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "skin_tye_id")
+    private QuizSession quizSession;
+
 
 }

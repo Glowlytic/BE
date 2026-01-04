@@ -1,28 +1,27 @@
 package com.spss.glowlytic.entity;
 
-import com.spss.glowlytic.enums.PostStatus;
+import com.spss.glowlytic.enums.NewsStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
 
 @Entity
-@Table(name = "posts")
+@Table(name = "news")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Post extends BaseEntity {
-
+public class News extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(length = 255)
+    @Column()
     private String title;
 
-    @Column(length = 255)
+    @Column()
     private String slug;
 
     @Lob
@@ -32,9 +31,10 @@ public class Post extends BaseEntity {
     private String thumbnailUrl;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "message_type", length = 20)
-    private PostStatus status;
+    @Column(length = 20)
+    private NewsStatus status;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<PostMedia> postMedias;
+    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<NewsMedia> newsMedias;
+
 }
