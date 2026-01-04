@@ -17,10 +17,6 @@ import java.util.List;
 @Builder
 public class Promotion extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Lob
     private String description;
 

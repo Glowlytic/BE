@@ -10,10 +10,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor @AllArgsConstructor @Builder
 public class ProductVariant extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
