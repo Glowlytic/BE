@@ -68,7 +68,6 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<QuizSession> quizSessions;
 
-
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Coach coach;
 

@@ -3,6 +3,7 @@ package com.spss.glowlytic.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "variants")
@@ -30,4 +31,7 @@ public class ProductVariant extends BaseEntity {
 
     @Column(name = "image_url", length = 500)
     private String imageUrl;
+
+    @OneToMany(mappedBy = "productVariant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems;
 }
