@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDateTime;
+
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -52,28 +53,33 @@ public class GlobalExceptionHandler {
         String enumKey = ex.getBindingResult().getFieldError() != null
                 ? ex.getBindingResult().getFieldError().getDefaultMessage()
                 : "INVALID_KEY";
-        ErrorCode errorCode = ErrorCode.INVALID_KEY;
+
+        ErrorCode errorCode;
+        String finalMessage;
+
         try {
             errorCode = ErrorCode.valueOf(enumKey);
+            finalMessage = errorCode.getMessage();
         } catch (IllegalArgumentException e) {
-            log.warn("Validation error not found in ErrorCode enum: {}", enumKey);
+            errorCode = ErrorCode.INVALID_KEY;
+            finalMessage = enumKey;
         }
         return buildResponse(
                 (HttpStatus) errorCode.getStatusCode(),
                 errorCode.getCode(),
-                errorCode.getMessage().equals("Uncategorized error") ? enumKey : errorCode.getMessage(),
+                finalMessage,
                 request
         );
     }
 
     @ExceptionHandler({AccessDeniedException.class, AuthorizationDeniedException.class})
     public ResponseEntity<ErrorResponse> handleAccessDenied(Exception ex, WebRequest request) {
-        return buildResponse(HttpStatus.FORBIDDEN, HttpStatus.FORBIDDEN.value(), "Access denied: You do not have permission.", request);
+        return buildResponse(HttpStatus.FORBIDDEN, ErrorCode.UNAUTHORIZED.getCode(), "Access denied: You do not have permission.", request);
     }
 
     @ExceptionHandler({JwtException.class, AuthenticationServiceException.class})
     public ResponseEntity<ErrorResponse> handleAuthExceptions(Exception ex, WebRequest request) {
-        return buildResponse(HttpStatus.UNAUTHORIZED, HttpStatus.UNAUTHORIZED.value(), "Authentication failed: " + ex.getMessage(), request);
+        return buildResponse(HttpStatus.UNAUTHORIZED, ErrorCode.UNAUTHENTICATED.getCode(), "Authentication failed: " + ex.getMessage(), request);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
@@ -82,7 +88,7 @@ public class GlobalExceptionHandler {
                 .stream()
                 .map(ConstraintViolation::getMessage)
                 .collect(Collectors.joining(", "));
-        return buildResponse(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), detailedMessages, request);
+        return buildResponse(HttpStatus.BAD_REQUEST, ErrorCode.INVALID_KEY.getCode(), detailedMessages, request);
     }
 
     @ExceptionHandler(Exception.class)

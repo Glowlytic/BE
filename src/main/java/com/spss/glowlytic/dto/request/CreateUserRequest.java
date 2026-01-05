@@ -19,35 +19,35 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class CreateUserRequest {
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Invalid email format")
+    @NotBlank(message = "EMAIL_REQUIRED")
+    @Email(message = "INVALID_EMAIL")
     private String email;
 
-    @NotBlank(message = "Username is required")
-    @Size(min = 3, max = 50)
-    @Pattern(regexp = PredefinedConstants.NAME_REGEX, message = "Username must contain only letters and numbers")
+    @NotBlank(message = "USERNAME_REQUIRED")
+    @Size(min = 3, max = 50, message = "USERNAME_INVALID_SIZE")
+    @Pattern(regexp = PredefinedConstants.NAME_REGEX, message = "USERNAME_INVALID")
     private String username;
 
-    @NotBlank(message = "Password is required")
-    @Size(min = 5, message = "Password must be at least 5 characters")
+    @NotBlank(message = "PASSWORD_REQUIRED")
+    @Size(min = 5, message = "PASSWORD_TOO_SHORT")
     private String password;
 
-    @NotBlank(message = "First name is required")
-    @Pattern(regexp = PredefinedConstants.NAME_REGEX, message = "First Name must contain only letters and numbers")
+    @NotBlank(message = "FIRST_NAME_REQUIRED")
+    @Pattern(regexp = PredefinedConstants.NAME_REGEX, message = "INVALID_FIRST_NAME")
     private String firstName;
 
-    @Pattern(regexp = PredefinedConstants.NAME_REGEX, message = "Middle Name must contain only letters and numbers")
+    @Pattern(regexp = PredefinedConstants.NAME_REGEX, message = "INVALID_MIDDLE_NAME")
     private String middleName;
 
-    @NotBlank(message = "Last name is required")
-    @Pattern(regexp = PredefinedConstants.NAME_REGEX, message = "Last Name must contain only letters and numbers")
+    @NotBlank(message = "LAST_NAME_REQUIRED")
+    @Pattern(regexp = PredefinedConstants.NAME_REGEX, message = "INVALID_LAST_NAME")
     private String lastName;
 
     private String phoneNumber;
 
     private LocalDate dob;
 
-    @NotBlank(message = "Gender is required")
+    @NotBlank(message = "GENDER_REQUIRED")
     private GenderType gender;
 
 }
