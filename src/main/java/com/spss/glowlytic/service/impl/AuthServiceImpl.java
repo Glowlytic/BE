@@ -2,6 +2,7 @@ package com.spss.glowlytic.service.impl;
 
 import com.spss.glowlytic.dto.request.CreateUserRequest;
 import com.spss.glowlytic.dto.request.LoginRequest;
+import com.spss.glowlytic.dto.request.LogoutRequest;
 import com.spss.glowlytic.dto.response.LoginResponse;
 import com.spss.glowlytic.entity.Role;
 import com.spss.glowlytic.entity.User;
@@ -18,6 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.concurrent.TimeUnit;
+
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
@@ -27,6 +30,7 @@ public class AuthServiceImpl implements AuthService {
     private final JwtService jwtService;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+    private final RedisService redisService;
 
 
     @Override
@@ -48,6 +52,24 @@ public class AuthServiceImpl implements AuthService {
         user.setRole(customerRole);
 
         userRepository.save(user);
+    }
+
+    @Override
+    public void logout(LogoutRequest request, String accessToken) {
+        String finalAccessToken = accessToken.startsWith("Bearer ")
+                ? accessToken.substring(7)
+                : accessToken;
+        long accessTokenRemainingTime = jwtService.getRemainingTime(finalAccessToken);
+        if (accessTokenRemainingTime > 0) {
+            redisService.save(finalAccessToken, "blacklisted", accessTokenRemainingTime, TimeUnit.MILLISECONDS);
+        }
+        if (request.getRefreshToken() != null && !request.getRefreshToken().isEmpty()) {
+            String refreshToken = request.getRefreshToken();
+            long refreshTokenRemainingTime = jwtService.getRemainingTime(refreshToken);
+            if (refreshTokenRemainingTime > 0) {
+                redisService.save(refreshToken, "blacklisted", refreshTokenRemainingTime, TimeUnit.MILLISECONDS);
+            }
+        }
     }
 
     @Override

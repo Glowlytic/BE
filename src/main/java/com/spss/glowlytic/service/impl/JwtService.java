@@ -7,6 +7,7 @@ import com.nimbusds.jwt.SignedJWT;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -41,5 +42,20 @@ public class JwtService {
         } catch (JOSEException e) {
             throw new RuntimeException("Error generating JWT", e);
         }
+    }
+
+    public Date extractExpiration(String token) {
+        try {
+            SignedJWT signedJWT = SignedJWT.parse(token);
+            return signedJWT.getJWTClaimsSet().getExpirationTime();
+        } catch (ParseException e) {
+            throw new RuntimeException("Cannot parse JWT to extract expiration", e);
+        }
+    }
+
+    public long getRemainingTime(String token) {
+        Date expiration = extractExpiration(token);
+        long diff = expiration.getTime() - System.currentTimeMillis();
+        return diff > 0 ? diff : 0;
     }
 }
