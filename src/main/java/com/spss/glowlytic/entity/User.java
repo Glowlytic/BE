@@ -20,8 +20,14 @@ public class User extends BaseEntity {
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
-    @Column(name = "username", length = 50)
+    @Column(name = "email", length = 100, unique = true)
+    private String email;
+
+    @Column(name = "username", length = 50, unique = true)
     private String username;
+
+    @Column(name = "password", nullable = false)
+    private String password;
 
     @Column(name = "first_name", length = 50)
     private String firstName;
