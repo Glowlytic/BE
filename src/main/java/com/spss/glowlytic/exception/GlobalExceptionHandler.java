@@ -61,7 +61,7 @@ public class GlobalExceptionHandler {
         return buildResponse(
                 (HttpStatus) errorCode.getStatusCode(),
                 errorCode.getCode(),
-                errorCode.getMessage().equals("Uncategorized error") ? enumKey : errorCode.getMessage(), // Show actual message if generic
+                errorCode.getMessage().equals("Uncategorized error") ? enumKey : errorCode.getMessage(),
                 request
         );
     }

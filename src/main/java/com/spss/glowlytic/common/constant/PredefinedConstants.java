@@ -1,4 +1,4 @@
-package com.spss.glowlytic.constant;
+package com.spss.glowlytic.common.constant;
 
 public class PredefinedConstants {
     public static final String NAME_REGEX = "^[a-zA-Z0-9]+$";

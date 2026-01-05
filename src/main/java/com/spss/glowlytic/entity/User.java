@@ -3,6 +3,8 @@ import com.spss.glowlytic.enums.GenderType;
 import com.spss.glowlytic.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.SQLRestriction;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@SQLRestriction("is_deleted = false")
 public class User extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -54,6 +57,9 @@ public class User extends BaseEntity {
 
     @Column(name = "reset_token", length = 255)
     private String resetToken;
+
+    @Column(name = "is_banned")
+    private Boolean isBanned = false;
 
     @Column(name = "reset_token_expiry")
     private LocalDateTime resetTokenExpiry;

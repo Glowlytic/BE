@@ -6,18 +6,11 @@ import org.springframework.http.HttpStatusCode;
 
 @Getter
 public enum ErrorCode {
-    SUCCESS(200, "Success", HttpStatus.OK),
-
-    UNCATEGORIZED_EXCEPTION(9999, "Uncategorized error", HttpStatus.INTERNAL_SERVER_ERROR),
-    INVALID_KEY(1001, "Uncategorized error", HttpStatus.BAD_REQUEST),
-    USER_EXISTED(1002, "User already exists", HttpStatus.BAD_REQUEST),
-    USERNAME_INVALID(1003, "Username must be at least 3 characters", HttpStatus.BAD_REQUEST),
-    INVALID_PASSWORD(1004, "Password must be at least 8 characters", HttpStatus.BAD_REQUEST),
-    USER_NOT_FOUND(1005, "User not found", HttpStatus.NOT_FOUND),
-    UNAUTHENTICATED(1006, "Unauthenticated", HttpStatus.UNAUTHORIZED),
-    UNAUTHORIZED(1007, "You do not have permission", HttpStatus.FORBIDDEN),
-    INVALID_NAME_FORMAT(1008, "Name must not contain special characters", HttpStatus.BAD_REQUEST),
-    ;
+    USER_EXISTED(1000, "User is already existed!", HttpStatus.BAD_REQUEST),
+    USER_NOT_FOUND(1001, "User not found!", HttpStatus.NOT_FOUND),
+    USER_BANNED(1002, "Account is banned!", HttpStatus.FORBIDDEN),
+    INVALID_CREDENTIALS(1003, "Invalid username/email or password. Please try again!", HttpStatus.UNAUTHORIZED),
+    EMAIL_EXISTED(1004, "Email is already existed!", HttpStatus.BAD_REQUEST);
 
     ErrorCode(int code, String message, HttpStatusCode statusCode) {
         this.code = code;
