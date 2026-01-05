@@ -1,4 +1,5 @@
 package com.spss.glowlytic.entity;
+import com.spss.glowlytic.enums.GenderType;
 import com.spss.glowlytic.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -36,6 +37,10 @@ public class User extends BaseEntity {
 
     @Column(name = "date_of_birth", length = 15)
     private LocalDate dob;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private GenderType gender;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 20)

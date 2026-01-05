@@ -1,5 +1,5 @@
 package com.spss.glowlytic.enums;
 
 public enum NewsStatus {
-    DRAFT, PUBLISHED
+    DRAFT, PUBLISHED, DELETED
 }
