@@ -18,9 +18,9 @@ public class SkinType extends BaseEntity {
     @Column(name = "name", length = 255)
     private String name;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "code", length = 20)
-    private SkinTypeCode code;
+
+    @Column(name = "code", length = 255)
+    private String code;
 
     @Lob
     private String description;
