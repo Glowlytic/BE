@@ -57,8 +57,11 @@ services:
       - "5672:5672"
       - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_USER: ${RABBIT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBIT_PASS}
+      RABBITMQ_ERLANG_COOKIE: ${RABBIT_COOKIE}
+    volumes:
+        - rabbitmq_data:/var/lib/rabbitmq
     healthcheck:
       test: [ "CMD", "rabbitmq-diagnostics", "check_port_connectivity" ]
       interval: 10s
@@ -68,3 +71,4 @@ services:
 volumes:
   postgres_data:
   redis_data:
+  rabbitmq_data:
