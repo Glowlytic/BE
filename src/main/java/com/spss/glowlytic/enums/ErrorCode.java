@@ -28,7 +28,8 @@ public enum ErrorCode {
     INVALID_MIDDLE_NAME(1017, "Middle Name must contain only letters and numbers", HttpStatus.BAD_REQUEST),
     LAST_NAME_REQUIRED(1018, "Last name is required", HttpStatus.BAD_REQUEST),
     INVALID_LAST_NAME(1019, "Last Name must contain only letters and numbers", HttpStatus.BAD_REQUEST),
-    GENDER_REQUIRED(1020, "Gender is required", HttpStatus.BAD_REQUEST);
+    GENDER_REQUIRED(1020, "Gender is required", HttpStatus.BAD_REQUEST),
+    ROLE_NOT_FOUND(1021, "Role is not found in db", HttpStatus.NOT_FOUND);
 
     ErrorCode(int code, String message, HttpStatusCode statusCode) {
         this.code = code;

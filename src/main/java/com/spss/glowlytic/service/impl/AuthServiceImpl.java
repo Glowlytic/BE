@@ -48,7 +48,7 @@ public class AuthServiceImpl implements AuthService {
         user.setIsBanned(false);
         user.setIsDeleted(false);
         Role customerRole = roleRepository.findByName(RoleName.CUSTOMER)
-                .orElseThrow(() -> new RuntimeException("Role CUSTOMER not initialized in DB"));
+                .orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_FOUND));
         user.setRole(customerRole);
 
         userRepository.save(user);
