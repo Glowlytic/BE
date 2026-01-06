@@ -22,8 +22,14 @@ services:
       - '6379:6379'
     volumes:
        - redis_data:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   backend:
+    build: .
     image: ghcr.io/glowlytic/be:main
     ports:
       - "8080:8080"
