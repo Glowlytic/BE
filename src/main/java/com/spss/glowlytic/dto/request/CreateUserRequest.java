@@ -1,6 +1,6 @@
 package com.spss.glowlytic.dto.request;
 
-import com.spss.glowlytic.common.constant.PredefinedConstants;
+import com.spss.glowlytic.common.constants.PredefinedConstants;
 import com.spss.glowlytic.enums.GenderType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -3,6 +3,7 @@ package com.spss.glowlytic.service.impl;
 import com.spss.glowlytic.dto.request.CreateUserRequest;
 import com.spss.glowlytic.dto.request.LoginRequest;
 import com.spss.glowlytic.dto.request.LogoutRequest;
+import com.spss.glowlytic.dto.request.ResetPasswordRequest;
 import com.spss.glowlytic.dto.response.LoginResponse;
 import com.spss.glowlytic.entity.Role;
 import com.spss.glowlytic.entity.User;
@@ -14,12 +15,16 @@ import com.spss.glowlytic.mapper.UserMapper;
 import com.spss.glowlytic.repository.RoleRepository;
 import com.spss.glowlytic.repository.UserRepository;
 import com.spss.glowlytic.service.AuthService;
+import com.spss.glowlytic.service.EmailService;
+import com.spss.glowlytic.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.concurrent.TimeUnit;
+
+import static com.spss.glowlytic.common.helpers.OtpUtils.generateOtp;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +36,7 @@ public class AuthServiceImpl implements AuthService {
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
     private final RedisService redisService;
+    private final EmailService emailService;
 
 
     @Override
@@ -92,4 +98,28 @@ public class AuthServiceImpl implements AuthService {
                 .refreshToken(refreshToken)
                 .build();
     }
+
+    @Override
+    public void forgotPassword(String email) {
+        User user = userRepository.findByUsernameOrEmail(email)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+        String otp = generateOtp();
+        redisService.save("RESET_PW:" + email, otp, 5 * 60 * 1000L, TimeUnit.MILLISECONDS);
+        emailService.sendOtpEmail(email, otp);
+    }
+
+    @Override
+    public void resetPassword(ResetPasswordRequest request) {
+        String redisKey = "RESET_PW:" + request.getEmail();
+        Object storedOtp = redisService.get(redisKey);
+        if (storedOtp == null || !storedOtp.toString().equals(request.getOtp())) {
+            throw new AppException(ErrorCode.INVALID_OTP);
+        }
+        User user = userRepository.findByUsernameOrEmail(request.getEmail())
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
+        redisService.delete(redisKey);
+    }
+
 }
