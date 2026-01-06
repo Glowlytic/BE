@@ -19,7 +19,7 @@ public class Role extends BaseEntity {
     @Column(name = "role_name", length = 20)
     private RoleName name;
 
-    @Lob
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

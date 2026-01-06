@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.spss.glowlytic.common.helpers.OtpUtils.generateOtp;
+import static com.spss.glowlytic.common.utils.OtpUtils.generateOtp;
 
 @Service
 @RequiredArgsConstructor

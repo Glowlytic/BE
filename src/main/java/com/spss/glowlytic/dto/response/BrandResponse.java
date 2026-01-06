@@ -1,13 +1,15 @@
 package com.spss.glowlytic.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+
 
 @Data
-@Builder
+@SuperBuilder
+@NoArgsConstructor
 @AllArgsConstructor
-public class BrandResponse {
+@EqualsAndHashCode(callSuper = true)
+public class BrandResponse extends BaseResponse {
 
     private Long id;
 

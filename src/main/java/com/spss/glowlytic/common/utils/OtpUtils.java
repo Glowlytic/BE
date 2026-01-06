@@ -1,4 +1,4 @@
-package com.spss.glowlytic.common.helpers;
+package com.spss.glowlytic.common.utils;
 
 import java.security.SecureRandom;
 
