@@ -18,4 +18,16 @@ public class ApiResponse<T> {
     private String message = "Success";
 
     private T result;
+
+    public static <T> ApiResponse<T> success(T result) {
+        return ApiResponse.<T>builder()
+                .result(result)
+                .build();
+    }
+
+    public static <T> ApiResponse<T> success(String message) {
+        return ApiResponse.<T>builder()
+                .message(message)
+                .build();
+    }
 }
