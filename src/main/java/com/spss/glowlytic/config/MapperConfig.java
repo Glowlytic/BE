@@ -1,4 +1,4 @@
-package com.spss.glowlytic.common;
+package com.spss.glowlytic.config;
 
 @org.mapstruct.MapperConfig(
         componentModel = "spring",
