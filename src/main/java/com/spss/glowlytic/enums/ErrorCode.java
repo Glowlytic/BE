@@ -30,7 +30,11 @@ public enum ErrorCode {
     INVALID_LAST_NAME(1019, "Last Name must contain only letters and numbers", HttpStatus.BAD_REQUEST),
     GENDER_REQUIRED(1020, "Gender is required", HttpStatus.BAD_REQUEST),
     ROLE_NOT_FOUND(1021, "Role is not found in db", HttpStatus.NOT_FOUND),
-    INVALID_OTP(1022, "Invalid otp. Please try again", HttpStatus.BAD_REQUEST);
+    INVALID_OTP(1022, "Invalid otp. Please try again", HttpStatus.BAD_REQUEST),
+
+    BRAND_NAME_REQUIRED(1023, "Brand name is required!", HttpStatus.BAD_REQUEST),
+    BRAND_DESCRIPTION_REQUIRED(1024, "Brand description is required!", HttpStatus.BAD_REQUEST),
+    BRAND_NOT_FOUD(1025,"Brand not found!", HttpStatus.NOT_FOUND);
 
     ErrorCode(int code, String message, HttpStatusCode statusCode) {
         this.code = code;

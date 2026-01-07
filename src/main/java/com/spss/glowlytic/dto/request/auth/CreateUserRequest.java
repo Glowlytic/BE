@@ -1,4 +1,4 @@
-package com.spss.glowlytic.dto.request;
+package com.spss.glowlytic.dto.request.auth;
 
 import com.spss.glowlytic.common.constants.PredefinedConstants;
 import com.spss.glowlytic.enums.GenderType;

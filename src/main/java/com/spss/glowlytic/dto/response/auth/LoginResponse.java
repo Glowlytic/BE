@@ -1,4 +1,4 @@
-package com.spss.glowlytic.dto.response;
+package com.spss.glowlytic.dto.response.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
