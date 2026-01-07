@@ -1,11 +1,9 @@
 package com.spss.glowlytic.service;
 
-import com.spss.glowlytic.dto.request.CreateBrandRequest;
-import com.spss.glowlytic.dto.request.UpdateBrandRequest;
-import com.spss.glowlytic.dto.response.BrandResponse;
+import com.spss.glowlytic.dto.request.brand.CreateBrandRequest;
+import com.spss.glowlytic.dto.request.brand.UpdateBrandRequest;
+import com.spss.glowlytic.dto.response.brand.BrandResponse;
 import com.spss.glowlytic.dto.response.general.PageResponse;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 public interface BrandService {
     BrandResponse createBrand(CreateBrandRequest request);

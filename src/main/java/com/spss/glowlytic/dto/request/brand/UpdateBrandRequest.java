@@ -1,7 +1,5 @@
-package com.spss.glowlytic.dto.request;
+package com.spss.glowlytic.dto.request.brand;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Lob;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,8 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateBrandRequest {
-
+public class UpdateBrandRequest {
     @NotBlank(message = "BRAND_NAME_REQUIRED")
     private String name;
 

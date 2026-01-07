@@ -1,4 +1,4 @@
-package com.spss.glowlytic.dto.request;
+package com.spss.glowlytic.dto.request.brand;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateBrandRequest {
+public class CreateBrandRequest {
+
     @NotBlank(message = "BRAND_NAME_REQUIRED")
     private String name;
 

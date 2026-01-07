@@ -1,7 +1,6 @@
 package com.spss.glowlytic.mapper;
 
-import com.spss.glowlytic.config.MapperConfig;
-import com.spss.glowlytic.dto.request.CreateUserRequest;
+import com.spss.glowlytic.dto.request.auth.CreateUserRequest;
 import com.spss.glowlytic.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

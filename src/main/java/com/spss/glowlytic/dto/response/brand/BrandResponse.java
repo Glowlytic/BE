@@ -1,5 +1,6 @@
-package com.spss.glowlytic.dto.response;
+package com.spss.glowlytic.dto.response.brand;
 
+import com.spss.glowlytic.dto.response.BaseResponse;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

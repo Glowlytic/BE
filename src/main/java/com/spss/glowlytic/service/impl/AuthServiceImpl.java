@@ -1,10 +1,10 @@
 package com.spss.glowlytic.service.impl;
 
-import com.spss.glowlytic.dto.request.CreateUserRequest;
-import com.spss.glowlytic.dto.request.LoginRequest;
-import com.spss.glowlytic.dto.request.LogoutRequest;
-import com.spss.glowlytic.dto.request.ResetPasswordRequest;
-import com.spss.glowlytic.dto.response.LoginResponse;
+import com.spss.glowlytic.dto.request.auth.CreateUserRequest;
+import com.spss.glowlytic.dto.request.auth.LoginRequest;
+import com.spss.glowlytic.dto.request.auth.LogoutRequest;
+import com.spss.glowlytic.dto.request.auth.ResetPasswordRequest;
+import com.spss.glowlytic.dto.response.auth.LoginResponse;
 import com.spss.glowlytic.entity.Role;
 import com.spss.glowlytic.entity.User;
 import com.spss.glowlytic.enums.ErrorCode;

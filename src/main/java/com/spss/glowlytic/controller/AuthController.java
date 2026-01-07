@@ -1,7 +1,7 @@
 package com.spss.glowlytic.controller;
 
-import com.spss.glowlytic.dto.request.*;
-import com.spss.glowlytic.dto.response.LoginResponse;
+import com.spss.glowlytic.dto.request.auth.*;
+import com.spss.glowlytic.dto.response.auth.LoginResponse;
 import com.spss.glowlytic.dto.response.general.ApiResponse;
 import com.spss.glowlytic.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;

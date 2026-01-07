@@ -1,4 +1,4 @@
-package com.spss.glowlytic.dto.request;
+package com.spss.glowlytic.dto.request.auth;
 
 import lombok.Data;
 

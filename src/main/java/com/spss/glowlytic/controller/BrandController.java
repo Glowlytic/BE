@@ -1,8 +1,8 @@
 package com.spss.glowlytic.controller;
 
-import com.spss.glowlytic.dto.request.CreateBrandRequest;
-import com.spss.glowlytic.dto.request.UpdateBrandRequest;
-import com.spss.glowlytic.dto.response.BrandResponse;
+import com.spss.glowlytic.dto.request.brand.CreateBrandRequest;
+import com.spss.glowlytic.dto.request.brand.UpdateBrandRequest;
+import com.spss.glowlytic.dto.response.brand.BrandResponse;
 import com.spss.glowlytic.dto.response.general.ApiResponse;
 import com.spss.glowlytic.dto.response.general.PageResponse;
 import com.spss.glowlytic.service.BrandService;
